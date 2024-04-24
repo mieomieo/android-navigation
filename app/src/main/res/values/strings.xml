@@ -18,5 +18,8 @@
     <string name="done">Done</string>
     <string name="get_otp">get otp</string>
     <string name="or">OR</string>
+    <string name="find_your_account">Find your account</string>
+    <string name="enter_your_email">Enter your email</string>
+
 
 </resources>
