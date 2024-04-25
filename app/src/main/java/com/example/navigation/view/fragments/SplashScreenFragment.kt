@@ -8,24 +8,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.navigation.R
+import com.example.navigation.databinding.FragmentCreateNewPasswordBinding
+import com.example.navigation.databinding.FragmentSplashScreenBinding
 
 class SplashScreenFragment : Fragment() {
-
+    private lateinit var binding: FragmentSplashScreenBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash_screen, container, false)
+        binding = FragmentSplashScreenBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Handler().postDelayed({
-            if(findNavController().currentDestination?.id == R.id.splashScreenFragment){
+            if (findNavController().currentDestination?.id == R.id.splashScreenFragment) {
                 findNavController().navigate(R.id.loginFragment)
             }
-        },1000)
+        }, 1000)
     }
 
 

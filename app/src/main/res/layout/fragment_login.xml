@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.LoginFragment"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:scaleType="fitXY"
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -18,21 +20,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         >
-
-        <EditText
-            android:id="@+id/nameEt"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email_or_phone"
-            android:minHeight="48dp" />
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/background">
 
-        <EditText
-            android:id="@+id/passEt"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Email"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:minHeight="48dp" />
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_email"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Password"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/loginBtn"
@@ -46,7 +71,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/forgotTxt"
+            android:id="@+id/forgotPasswordBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -70,7 +95,7 @@
         >
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:background="?android:attr/listDivider"
             android:layout_weight="1"
             tools:ignore="MissingConstraints" />
@@ -83,7 +108,7 @@
             />
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:background="?android:attr/listDivider"
             android:layout_weight="1"
             tools:ignore="MissingConstraints" />

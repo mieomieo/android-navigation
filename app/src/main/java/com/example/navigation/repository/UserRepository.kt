@@ -12,4 +12,7 @@ class UserRepository (app:Application){
         userDao = userDatabase.getUserDao()
     }
     suspend fun registerUser(user: User) = userDao.registerUser(user)
+    suspend fun loginUser(email: String, password: String): User? {
+        return userDao.loginUser(email, password)
+    }
 }

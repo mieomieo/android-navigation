@@ -4,50 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.RegisterFragment"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context=".view.fragments.RegisterFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.7"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7">
 
-        <EditText
-            android:id="@+id/mailEt"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
-            android:hint="@string/email" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/passEt"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Email"
+                android:hint="@string/email"
+                android:inputType="text"
+                tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
-            android:hint="@string/password" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:errorEnabled="false"
+            app:passwordToggleEnabled="true">
 
-        <EditText
-            android:id="@+id/confirmPassEt"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Password"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_cf_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
-            android:hint="@string/confirm_password" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_password"
+            app:errorEnabled="false"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPassEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Re-input Password"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/border"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
