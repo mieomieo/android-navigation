@@ -15,4 +15,7 @@ class UserRepository (app:Application){
     suspend fun loginUser(email: String, password: String): User? {
         return userDao.loginUser(email, password)
     }
+    suspend fun checkUniqueEmail(email: String) = userDao.checkUniqueEmail(email)
+
+    suspend fun changPassword(email: String, currentPassword: String, newPassword: String) = userDao.changePassword(email,currentPassword,newPassword)
 }

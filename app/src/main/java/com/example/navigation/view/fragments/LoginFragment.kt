@@ -38,7 +38,8 @@ class LoginFragment : Fragment() {
         userViewModel.loginResult.observe(viewLifecycleOwner) { loginResult ->
             if (loginResult != null) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
-                Toast.makeText(requireContext(), "Successfully logged in", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Successfully logged in", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 Toast.makeText(requireContext(), "Wrong email or password", Toast.LENGTH_SHORT)
                     .show()
@@ -51,9 +52,8 @@ class LoginFragment : Fragment() {
             if (Validate.isValidEmail(email) && Validate.isValidPassword(password)) {
                 userViewModel.loginUser(email, hashSHA256(password))
             }
+
         }
-
-
         binding.registerBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }

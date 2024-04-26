@@ -8,13 +8,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.navigation.model.User
 import com.example.navigation.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
-class UserViewModel (app : Application):ViewModel(){
-    private val userRepository : UserRepository = UserRepository(app)
+class UserViewModel(app: Application) : ViewModel() {
+    private val userRepository: UserRepository = UserRepository(app)
     private val _loginResult = MutableLiveData<User?>()
     val loginResult: LiveData<User?> = _loginResult
+    private val _isEmailExisted = MutableLiveData<Int>()
+    val isEmailExisted: LiveData<Int> = _isEmailExisted
+
     class UserViewModelFactory(private val application: Application) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -24,18 +28,29 @@ class UserViewModel (app : Application):ViewModel(){
             throw IllegalArgumentException("Unable construct viewModel")
         }
     }
-    fun registerUser(user: User) = viewModelScope.launch {
+
+    fun registerUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
         userRepository.registerUser(user)
     }
 
     fun loginUser(email: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val user = userRepository.loginUser(email, password)
-            _loginResult.value = user
+            _loginResult.postValue(user)
         }
     }
-    fun logoutUser(){
 
+    fun checkUniqueEmail(email: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            val checkUniqueEmail = userRepository.checkUniqueEmail(email)
+            _isEmailExisted.postValue(checkUniqueEmail)
+        }
+    }
+
+    fun changePassword(email: String, currentPassword: String, newPassword: String){
+        viewModelScope.launch (Dispatchers.IO){
+
+        }
     }
 
 }

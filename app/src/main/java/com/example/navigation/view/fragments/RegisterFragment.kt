@@ -43,10 +43,17 @@ class RegisterFragment : Fragment() {
         binding.mailEt.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 val email = binding.mailEt.text.toString()
+                userViewModel.checkUniqueEmail(email)
                 if (!Validate.isValidEmail(email)) {
                     binding.mailEt.error = "Invalid email"
                 }
+                userViewModel.isEmailExisted.observe(viewLifecycleOwner) { isEmailExisted ->
+                    if(isEmailExisted > 0){
+                        binding.mailEt.error = "Email is already existed"
+                    }
+                }
             }
+
         }
         binding.passEt.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -83,7 +90,7 @@ class RegisterFragment : Fragment() {
                 }
                 if (!Validate.isValidPassword(password)) {
                     Toast.makeText(
-                        requireContext(), "Password must be at least 8 characters long.", Toast.LENGTH_LONG
+                        requireContext(), "Password must be at least 8 characters long.", Toast.LENGTH_SHORT
                     ).show()
                 }
                 if (password != confirmPassword) {
